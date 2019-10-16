@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Technology Meetups Search</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <header id="banner">
+      <h1>Help Me Decide</h1>
+      <p>Are you hungry? Can't decide on what to eat? We've got you covered!</p>
+  </header>  
+  <section id = "options">
+      <form id = "eat-at-home">
+        <label for="search-location">Location: </label>
+        <input type="text" name="search-location" id="search-location" placeholder = "City, State">
+
+        <label for="search-radius">Radius to Search: </label>
+        <input type="text" name="search-radius" id="search-radius">
+
+        <label for="technology-select">Option 1 </label>
+        <input type = "checkbox" name ="technology-select" value="Option1">
+
+        <label for="technology-select">Option 2 </label>
+        <input type = "checkbox" name ="technology-select" value="Option2">
+
+        <label for="technology-select">Option 3 </label>
+        <input type = "checkbox" name ="technology-select" value="Option3">
+      </form>
+  </section>
+  <p id ="js-error-message" class="error-message"></p>
+  <section id = "resturants" class="hidden">
+
+  </section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
