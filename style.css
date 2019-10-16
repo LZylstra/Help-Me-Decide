@@ -1,4 +1,23 @@
 *{
     box-sizing: border-box;
 }
+header{
+    text-align: center;
+}
+section{
+    border: solid 1px;
+    width: 50%;
+    height: 500px;
+    float: left;
+}
+
+#options{
+    text-align: center;
+    width: 100%;
+}
+
+.hidden{
+    display: none;
+}
+
 
