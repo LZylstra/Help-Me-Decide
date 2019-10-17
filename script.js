@@ -6,7 +6,6 @@ const categories = ["Beef", "Chicken", "Dessert", "Lamb", "Miscellaneous", "Past
 
 
 function getMeal(btn){
-    //user has chosen to eat out
     $('.start').css("display", "none");
     if (btn === "out"){
         eatOut();
@@ -17,15 +16,19 @@ function getMeal(btn){
 }
 
 function eatOut(){
-    //type of food text field
+    $('#right-box').append(`
+    <label for = "food-type" class = "eat-out">Type of Food: </label>
+    <input type = "text" name = "food-type" class = "eat-out">
 
-    //location text field
+    <label for = "location" class = "eat-out">Location: </label>
+    <input type = "text" name = "location" class = "eat-out">
 
-    //open now check box
+    <label for = "open-now" class = "eat-out">Only show currently open resturants </label>
+    <input type = "checkbox" name = "open-now" class = "eat-out">
 
-    //random button
-
-    //search button
+    <input type = "submit" value = "Random" id = "random" class = "eat-out">
+    <input type = "submit" value = "Search" id = "search" class = "eat-out">
+    `);
 }
 
 function eatIn(){
@@ -35,12 +38,11 @@ function eatIn(){
         categoryString += `<option value = "${categories[i]}">${categories[i]}</option>`
     }
 
-    //drop down list of categories
     $('#categories').append(categoryString);
     
     $('#left-box').append(
-    `<input type = "submit" value = "Random" id = "random">
-    <input type = "submit" value = "Search" id = "search">
+    `<input type = "submit" value = "Random" id = "random" class = "eat-in">
+    <input type = "submit" value = "Search" id = "search" class = "eat-in">
     `);
     $('#categories').removeClass('hidden');
 }
@@ -53,4 +55,15 @@ function watchForm(){
     })
 }
 
+function watchHeader(){
+    $('#banner').on('click', '.reset-to-home', function(event){
+        event.preventDefault();
+        $('.start').css("display", "inline-block");
+        $('#categories').addClass('hidden');
+        $('.eat-out').css("display", "none");
+        $('.eat-in').css("display", "none");
+    })
+}
+
 $(watchForm);
+$(watchHeader)
