@@ -24,7 +24,7 @@ function eatOut(){
         <label for = "open-now" class = "eat-out">Only show currently open resturants </label>
         <input type = "checkbox" name = "open-now" class = "eat-out" id = "onlyopen">
 
-        <button class = "eat-out random">Random </button>
+        <button class = "eat-out random hidden">Random </button>
         <button class = "eat-out search">Search </button>
     </form>
     `);
@@ -42,13 +42,13 @@ function eatIn(){
     
     $('#left-box').append(
     `<form class = "eat-form">
-        <button class = "eat-in random">Random </button>
+        <button class = "eat-in random hidden">Random </button>
         <button class = "eat-in search">Search </button>
     </form>
     `);
     $('#categories').removeClass('hidden');
 }
-
+/*
 function getResults(foodTypeChoice, locationChoice, opennow){
     let url;
     if (decision === "cook"){
@@ -92,39 +92,73 @@ function getResults(foodTypeChoice, locationChoice, opennow){
             $('#js-error-message').text(`Something went wrong: ${err.message}`);
         });
     }
-}
+}*/
 
 function displayResults(responseJson){
     console.log(responseJson)
+    if (decision === "cook"){
+        //limit to 5 results
+        for (let i = 0; i < responseJson.meals.length & i<5; i++){
+            $('#cookResults').append(`
+                    <li><img src = "${responseJson.meals[i].strMealThumb}" alt = "meal picture" width="50" height="50">
+                    <h3>${responseJson.meals[i].strMeal}</h3></li>
+                `);
+        }
+    }
+    if (decision === "resturant"){
+        for (let i = 0; i < responseJson.businesses.length & i<5; i++){
+            $('#resturantResults').append(`
+                <li><h3>${responseJson.businesses[i].name}</h3></li>
+                <li><h4>Rating: ${responseJson.businesses[i].rating}</h4></li>
+                <li><a href = "${responseJson.businesses[i].url}">Link to see more information</a></li>
+            `);
+        }
+    }
 }
-/*
+
 function getResturants(foodTypeChoice, locationChoice, opennow){
-    fetch(url)
+        const params = {
+            term: foodTypeChoice,
+            location: locationChoice,
+            open_now: opennow
+        }
+        const queryString = $.param(params);
+        url = searchURLYelp + '?' + queryString;
+        console.log(url);
+        fetch(url, {headers: {
+            "accept": "application/json",
+            "x-requested-with": "XMLHttpRequest",
+            "Access-Control-Allow-Origin":"*",
+            "Authorization": `Bearer ${apiKeyYelp}`}})
         .then(response =>{
             if (response.ok){
                 return response.json();
             }
             throw new Error(response.statusText);
         })
-        .then(responseJson => displayRecipes(responseJson))
+        .then(responseJson => displayResults(responseJson))
         .catch(err =>{
             $('#js-error-message').text(`Something went wrong: ${err.message}`);
-        }   
+        });
 }
 
 function getRecipes(foodTypeChoice){
-    fetch(url)
+    let url;
+        url = searchURLMealDB + "?c=" + foodTypeChoice;
+        console.log(url);
+
+        fetch(url)
         .then(response =>{
             if (response.ok){
                 return response.json();
             }
             throw new Error(response.statusText);
         })
-        .then(responseJson => displayRecipes(responseJson))
+        .then(responseJson => displayResults(responseJson))
         .catch(err =>{
             $('#js-error-message').text(`Something went wrong: ${err.message}`);
-        }
-}*/
+        });
+}
 
 function watchForm(){
     let locationChoice;
@@ -149,11 +183,12 @@ function watchForm(){
 
     $('#left-box').on( "click", ".search", function(event){
         event.preventDefault();
-        console.log("search pressed");
+        $('#cookResults').empty();
+        $('#resturantResults').empty();
         if (decision === "cook"){
             foodTypeChoice = $('#categories').val();
            // console.log(foodTypeChoice);
-           getResults(foodTypeChoice);
+           getRecipes(foodTypeChoice);
         }
         if (decision === "resturant"){
             foodTypeChoice = $('#food-type-chosen').val();
@@ -162,7 +197,7 @@ function watchForm(){
            // console.log(locationChoice);
             opennow = $("#onlyopen")[0].checked;
             //console.log(opennow);
-            getResults(foodTypeChoice, locationChoice, opennow);
+            getResturants(foodTypeChoice, locationChoice, opennow);
         }
     });
     watchHeader();
@@ -170,13 +205,14 @@ function watchForm(){
 
 function watchHeader(){
     $('#banner').on('click', '.reset-to-home', function(event){
-        console.log("going in watch header");
         event.preventDefault();
         $('.start').css("display", "inline-block");
         $('#categories').addClass('hidden');
         $('#categories').empty();
         $('.eat-out').css("display", "none");
         $('.eat-in').css("display", "none");
+        $('#cookResults').empty();
+        $('#resturantResults').empty();
     })
 }
 

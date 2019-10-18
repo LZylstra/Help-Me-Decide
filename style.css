@@ -21,3 +21,24 @@ section{
 }
 
 
+#cookResults{
+    display: flex;
+    flex-direction: column;
+
+    list-style: none;
+}
+
+#cookResults img{
+    float: left;
+}
+
+#resturantResults{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+
+#resturantResults li{
+    text-align: left;
+}
+
