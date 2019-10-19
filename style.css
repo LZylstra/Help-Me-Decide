@@ -1,10 +1,10 @@
-*{
-    box-sizing: border-box;
+* {
+	box-sizing: border-box;
 }
 
 /* General styling */
-body{
-    font-family: 'Merriweather Sans', sans-serif;
+body {
+	font-family: 'Merriweather Sans', sans-serif;
 }
 
 h2 {
@@ -13,14 +13,14 @@ h2 {
 	color: #000000;
 }
 
-
-h1, p{
+h1,
+p {
 	font-weight: bold;
 	color: #000000;
 }
 
 /* Button Styling */
-.button{
+.button {
 	box-shadow: inset 0px -34px 0px 0px #ffffff;
 	background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
 	background-color: #ffffff;
@@ -34,7 +34,7 @@ h1, p{
 	font-weight: bold;
 	padding: 6px 24px;
 	text-decoration: none;
-    text-shadow: 0px 1px 0px #ffffff;
+	text-shadow: 0px 1px 0px #ffffff;
 }
 
 .button:hover {
@@ -45,59 +45,60 @@ h1, p{
 .button:active {
 	position: relative;
 	top: 1px;
-} 
-
-/* Header Styling and Nav Bar*/
-#banner ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    font-family: 'Merriweather Sans', sans-serif;
-    font-weight: bold;
-} 
-
-#banner li{
-  float: left;
 }
 
-#banner li a{
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+/* Header Styling and Nav Bar*/
+#banner ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+	font-family: 'Merriweather Sans', sans-serif;
+	font-weight: bold;
+}
+
+#banner li {
+	float: left;
+}
+
+#banner li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
 }
 /* Change the link color to #111 (black) on hover */
 #banner li a:hover {
-    background-color: #111;
+	background-color: #111;
 }
 
-header{
-    text-align: center;
+header {
+	text-align: center;
 }
 
 /* Start Page Styling */
-#home, #out{
-    padding-top: 9em;
+#home,
+#out {
+	padding-top: 9em;
 }
 
 /* Parent element of two sections */
-#options{
-    text-align: center;
-    width: 100%;
+#options {
+	text-align: center;
+	width: 100%;
 }
 
 /* Sections Styling */
-section{
-    border: solid 1px;
-    width: 50%;
-    min-height: 500px;
-    float: left;
+section {
+	border: solid 1px;
+	width: 50%;
+	min-height: 500px;
+	float: left;
 }
 
-.home-img{
+.home-img {
 	background-image: url("images/home.jpg");
 	height: 100%;
 	margin: 0;
@@ -106,42 +107,41 @@ section{
 	margin-bottom: 10px;
 }
 
-.out-img{
+.out-img {
 	background-image: url("images/out.jpg");
 	height: 100%;
 	margin: 0;
 	background-position: center;
 	background-repeat: no-repeat;
 	margin-bottom: 10px;
-} 
+}
 
-.no-img{
-    background-color: #DCD8D6;
-    
+.no-img {
+	background-color: #dcd8d6;
 }
 
 /* Used to hide elements */
-.hidden{
-    display: none;
+.hidden {
+	display: none;
 }
 
 /* Results page */
-#cookResults{
-    
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    text-align: left;
+#cookResults {
+	display: flex;
+	flex-direction: column;
+	list-style: none;
+	text-align: left;
 }
 /*
 #cookResults img{
     float: left;
 }*/
 
-#restaurantResults{/*
+#restaurantResults {
+	/*
     display: flex;
     flex-direction: column;*/
-    list-style: none;
+	list-style: none;
 }
 /*
 #restaurantResults li{
@@ -149,8 +149,8 @@ section{
 }
 */
 
-#cautions{
-    list-style: none;
+#cautions {
+	list-style: none;
 }
 /*
 #cautions li{
@@ -162,26 +162,38 @@ section{
     clear: right;
 }*/
 
-
 /* Footer Styling */
-#edamam-badge{
-    float: left;
+#edamam-badge {
+	float: left;
 }
 
-#yelp{
-    float: right;
-    margin: 0;
+#yelp {
+	float: right;
+	margin: 0;
 }
 
-figcaption{
-    color: lightgrey;
-    display:inline-block;
-    font-size: 80%;
+figcaption {
+	color: lightgrey;
+	display: inline-block;
+	font-size: 80%;
 }
 
 /* Search form styling   */
-.eat-form{
-    padding-top: 4em;
-    padding-left: 1em;
-    text-align: left;
+.eat-form {
+	padding-top: 4em;
+	padding-left: 1em;
+	text-align: left;
+}
+
+/*This styles all of the text fields */
+
+input[type=text],
+select {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	display: inline-block;
+	margin: 8px 0;
+	padding: 8px 16px;
+	width: auto;
 }
