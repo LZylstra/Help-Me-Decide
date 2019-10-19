@@ -185,6 +185,7 @@ figcaption {
 	text-align: left;
 }
 
+<<<<<<< HEAD
 /*This styles all of the text fields */
 
 input[type=text],
@@ -197,3 +198,5 @@ select {
 	padding: 8px 16px;
 	width: auto;
 }
+=======
+>>>>>>> dev

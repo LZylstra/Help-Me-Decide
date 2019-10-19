@@ -16,7 +16,7 @@ function formatQueryParams(params) {
 function eatOut(){
     decision = "restaurant";
     $('#left-box').append(`
-    <form class = "eat-form" id = "restaurant-options-box>
+    <form class = "eat-form" id = "restaurant-options-box">
         <label for = "food-type" class = "eat-out">Type of Food: </label>
         <input type = "text" name = "food-type" class = "eat-out" id = "food-type-chosen">
 
