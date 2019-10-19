@@ -163,12 +163,18 @@ function watchForm(){
     $('#options').on("click", "#home-btn", function(event){
         event.preventDefault();
         $('.start').addClass('hidden');
+        //when they click home it should remove the right class
+        $('#right-box').removeClass('out-img').addClass('no-img');
         eatIn();
+
     });
 
     $('#options').on("click", "#out-btn", function(event){
         event.preventDefault();
         $('.start').addClass('hidden');
+       // when they click home it should move the left to right and remove cook
+        $('#right-box').removeClass('out-img').addClass('no-img');
+        $('#left-box').removeClass('home-img').addClass('out-img');
         eatOut();
     });
 
@@ -181,7 +187,7 @@ function watchForm(){
         event.preventDefault();
         $('#cookResults').empty();
         $('#restaurantResults').empty();
-        // $('#right-box').removeClass('out-img').addClass('no-img');
+
         if (decision === "cook"){
             foodTypeChoice = $('#food-search-chosen').val();
            // console.log(foodTypeChoice);
@@ -211,6 +217,8 @@ function watchHeader(){
         $('.eat-in').css("display", "none");
         $('#cookResults').empty();
         $('#restaurantResults').empty();
+        $('#right-box').addClass('out-img');
+        $('#left-box').removeClass('out-img').addClass('home-img');
     })
 }
 
