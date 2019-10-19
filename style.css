@@ -49,6 +49,11 @@ p {
 }
 
 /* Header Styling and Nav Bar*/
+nav{
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
 #banner ul {
 	list-style-type: none;
 	margin: 0;
@@ -76,7 +81,8 @@ p {
 }
 
 header {
-	text-align: center;
+    text-align: center;
+    margin-top: 4em;
 }
 
 /* Start Page Styling */
@@ -149,7 +155,7 @@ section {
 
 .results img{
     float: left;
-    margin-right: 2em;
+    margin-right: 8em;
     max-width: 13em;
     max-height: 13em;
     border: 1px groove;
@@ -288,5 +294,14 @@ select {
     #restaurant-div{
         padding-left: 10em;
     }
+
+    .results img{
+        float: left;
+        margin-right: 2em;
+        max-width: 13em;
+        max-height: 13em;
+        border: 1px groove;
+    }
+    
 
 }

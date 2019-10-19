@@ -29,8 +29,8 @@ function eatOut(){
         <label for = "open-now" class = "eat-out">Only show currently open restaurants </label>
         <input type = "checkbox" name = "open-now" class = "eat-out" id = "onlyopen">
 
-        <button class = "eat-out random hidden button">Random </button>
         <button class = "eat-out search button">Search </button>
+        <button class = "eat-out random hidden button">Random </button>
     </form>
     `);
 }
@@ -44,8 +44,8 @@ function eatIn(){
     `<form class = "eat-form">
         <label for = "food-search" class = "eat-in">Type of Food: </label>
         <input type = "text" name = "food-search" class = "eat-in" id = "food-search-chosen">
-        <button class = "eat-in random hidden button">Random </button>
         <button class = "eat-in search button">Search </button>
+        <button class = "eat-in random hidden button">Random </button>
         <p class = "eat-in">Not sure where to start? Here's some suggestions for things to search for:</p>
         <ul class = "eat-in"><li>Meal type: Breakfast, Lunch, Dinner, Snack</li>
         <li>Health options: Low-Carb, Dairy Free, Keto, Kosher, etc.</li>
