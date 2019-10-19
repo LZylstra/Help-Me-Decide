@@ -180,8 +180,9 @@ figcaption{
 }
 
 /* Search form styling   */
-.eat-form{
-    padding-top: 4em;
-    padding-left: 1em;
-    text-align: left;
+.eat-form {
+	padding-top: 4em;
+	padding-left: 1em;
+	text-align: left;
 }
+
