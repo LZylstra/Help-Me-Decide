@@ -69,7 +69,7 @@ let returnString = "";
 /* Results display function */
 function displayResults(responseJson){
     console.log(responseJson)
-
+    $('#results').removeClass('hidden');
     /* Display the cook at home results */
     if (decision === "cook"){
         /* If the API can't find any results, inform user */
@@ -84,13 +84,13 @@ function displayResults(responseJson){
             let ingredients = getList(responseJson.hits[i].recipe.ingredientLines);
             /* Add results to the results section and the unordered list */
             $('#cookResults').append(`
-                <li><img src = "${responseJson.hits[i].recipe.image}" alt = "meal picture" width="50" height="50">
+                <li class = "result-item"><img src = "${responseJson.hits[i].recipe.image}" alt = "meal picture">
                     <h3>${responseJson.hits[i].recipe.label}</h3>
-                    <h4>Calories: ${cal}</h4>
-                    <h4>Total Time: ${responseJson.hits[i].recipe.totalTime} minutes</h4>
-                    <p>Allergy Information:</p> <ul id = "cautions">${getList(responseJson.hits[i].recipe.cautions)}</ul>
-                    <p>Ingredients Needed: </p><ul>${ingredients}</ul>
-                    <a href = "${responseJson.hits[i].recipe.url}">Link to see full recipe </a>
+                    <h4 class = "line">Calories:</h4><p> ${cal}</p>
+                    <h4 class = "line">Total Time:</h4><p> ${responseJson.hits[i].recipe.totalTime} minutes</p>
+                    <h4>Allergy Information:</h4> <ul id = "cautions">${getList(responseJson.hits[i].recipe.cautions)}</ul>
+                    <h4>Ingredients Needed: </h4><ul id = "ingredients">${ingredients}</ul>
+                    <a href = "${responseJson.hits[i].recipe.url}" target="_blank" id = "link">Link to see full recipe </a>
                 </li>
             `);
         }

@@ -12,7 +12,9 @@ h2 {
 	font-weight: bold;
 	color: #000000;
 }
-
+h1{
+    font-family: 'Playfair Display', serif;
+}
 h1,
 p {
 	font-weight: bold;
@@ -126,41 +128,88 @@ section {
 }
 
 /* Results page */
+#cookResults, #restaurantResults{
+    font-family: 'Open Sans', sans-serif;
+}
+.results ul{
+    padding: 0;
+    list-style-position: inside;
+}
+
+.results li{
+    padding-left: 1em;
+}
+
+.results img{
+    float: left;
+    margin-right: 2em;
+    max-width: 13em;
+    border: 1px groove;
+}
+
+.results h3{
+    font-weight: bolder;
+    font-family: 'Playfair Display', serif;
+    font-size: 150%;
+}
+.results p{
+    font-weight: normal;
+    width: 100%;
+}
+.results h3, h4, p{
+    margin-top: 0;
+    margin-bottom: 1em;
+}
+
+#link{
+    padding-left: 15em;
+    font-weight: bold;
+    color: rgb(69,73,67);
+}
+
+.result-item h4{
+    padding-right: 1em;
+}
+.line{
+    float: left;
+}
+.result-item{
+    border: 2px outset;
+    padding: 1em;
+    margin: 1em;
+    width: 95%;
+    background-color: #CBAFA0;
+    border-radius: 7px;
+}
+
+#cautions {
+    list-style: none;
+    padding-bottom: 2em;
+}
+
+#cautions li{
+    display: inline-block;
+}
+#ingredients{
+    padding-bottom: 2em;
+}
+#ingredients li{
+    margin-right: 5em;
+}
+
 #cookResults {
 	display: flex;
 	flex-direction: column;
 	list-style: none;
 	text-align: left;
 }
-/*
-#cookResults img{
-    float: left;
-}*/
+
 
 #restaurantResults {
-	/*
-    display: flex;
-    flex-direction: column;*/
 	list-style: none;
 }
-/*
-#restaurantResults li{
-    text-align: left;
-}
-*/
 
-#cautions {
-	list-style: none;
-}
-/*
-#cautions li{
-    float: left;
-    padding-left: 1em;
-}
 
-#cautions ul::after{
-    clear: right;
-}*/
 
 /* Footer Styling */
 #edamam-badge {
@@ -185,7 +234,6 @@ figcaption {
 	text-align: left;
 }
 
-<<<<<<< HEAD
 /*This styles all of the text fields */
 
 input[type=text],
@@ -194,9 +242,7 @@ select {
 	border-radius: 4px;
 	box-sizing: border-box;
 	display: inline-block;
-	margin: 8px 0;
-	padding: 8px 16px;
+	margin: 4px 0;
+	padding: 6px 8px;
 	width: auto;
 }
-=======
->>>>>>> dev
