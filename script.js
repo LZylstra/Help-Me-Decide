@@ -1,5 +1,5 @@
-const APIID = "1e922488";
-const apikeyRecipe = "6dc79f0942a7ef71e2b035618600378e";
+const APIID = "aa801996";
+const apikeyRecipe = "f31249b063e0a9a17be0f79c3636034e";
 const apiKeyYelp = "MzC-vR8dGg4sB93woVcMeZoy_2-6iX1EQv9bCUev0uQJRuIbRuO-1K6R4JmaAiSv8yLQZtFofBKQrLG1zrq80dFTVwKJ3Zfs44fmJM2sgoSXNYkeXO0-xIUS8kapXXYx";
 const searchURLRecipe = "https://api.edamam.com/search"; 
 const searchURLYelp = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search";
@@ -41,7 +41,7 @@ function eatIn(){
     let categoryString;
 
     $('#left-box').append(
-    `<form class = "eat-form">
+    `<form class = "eat-form" id = "eat-form-in">
         <label for = "food-search" class = "eat-in">Type of Food: </label>
         <input type = "text" name = "food-search" class = "eat-in" id = "food-search-chosen">
         <button class = "eat-in search button">Search </button>
@@ -85,12 +85,14 @@ function displayResults(responseJson){
             /* Add results to the results section and the unordered list */
             $('#cookResults').append(`
                 <li class = "result-item"><img src = "${responseJson.hits[i].recipe.image}" alt = "meal picture">
+                    <div class = "breakthings">
                     <h3>${responseJson.hits[i].recipe.label}</h3>
                     <h4 class = "line">Calories:</h4><p> ${cal}</p>
                     <h4 class = "line">Total Time:</h4><p> ${responseJson.hits[i].recipe.totalTime} minutes</p>
-                    <h4>Allergy Information:</h4> <ul id = "cautions">${getList(responseJson.hits[i].recipe.cautions)}</ul>
+                    <h4 class = "allergy">Allergy Information:</h4><ul id = "cautions">${getList(responseJson.hits[i].recipe.cautions)}</ul>
                     <h4>Ingredients Needed: </h4><ul id = "ingredients">${ingredients}</ul>
                     <a href = "${responseJson.hits[i].recipe.url}" target="_blank" class = "link">Link to see full recipe </a>
+                    </div>
                 </li>
             `);
         }

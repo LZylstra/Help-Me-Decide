@@ -4,7 +4,9 @@
 
 /* General styling */
 body {
-	font-family: 'Merriweather Sans', sans-serif;
+    font-family: 'Merriweather Sans', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 h2 {
@@ -154,17 +156,20 @@ section {
 }
 
 .results img{
-    float: left;
-    margin-right: 8em;
     max-width: 13em;
     max-height: 13em;
     border: 1px groove;
+}
+.results li img{
+    display: block;
+    margin: 0 auto;
 }
 
 .results h3 {
 	font-weight: bolder;
 	font-family: 'Playfair Display', serif;
-	font-size: 150%;
+    font-size: 150%;
+    text-align: center;
 }
 .results p {
 	font-weight: normal;
@@ -178,7 +183,7 @@ p {
 }
 
 #cookResults .link{
-    padding-left: 15em;
+    padding-left: 2em;
     font-weight: bold;
     color: rgb(69,73,67);
 }
@@ -199,7 +204,7 @@ p {
     border: 2px outset;
     padding: 1em;
     margin: 1em;
-    width: 95%;
+    width: 80%;
     height: 100%;
     background-color: #CBAFA0;
     border-radius: 7px;
@@ -217,7 +222,7 @@ p {
 	padding-bottom: 2em;
 }
 #ingredients li {
-	margin-right: 5em;
+	margin-right: 1em;
 }
 
 #cookResults {
@@ -259,9 +264,11 @@ figcaption {
 
 /* Search form styling   */
 .eat-form {
-	padding-top: 4em;
 	padding-left: 1em;
-	text-align: left;
+    text-align: left;
+}
+#restaurant-options-box{
+    margin: auto;
 }
 
 /*This styles all of the text fields */
@@ -278,10 +285,32 @@ select {
 }
 
 @media only screen and (min-width: 780px) {
+.results li img{
+    display: block;
+    margin-right: 2em;
+}
     
+
+    
+    #ingredients li {
+        margin-right: 5em;
+    }
+    
+#cookResults .link{
+    padding-left: 15em;
+}
+.result-item{
+    width: 95%;
+
+}
+
+    #eat-form-in{
+        padding-top: 4em;
+    }
     #home,
     #out {
-        padding-top: 9em;
+        width: 100%;
+        
     }
 
     /* Sections Styling */
