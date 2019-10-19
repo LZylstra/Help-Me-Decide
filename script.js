@@ -6,12 +6,14 @@ const searchURLYelp = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/
 const categories = ["Beef", "Chicken", "Dessert", "Lamb", "Miscellaneous", "Pasta", "Pork", "Seafood", "Side", "Starter", "Vegan", "Vegetarian", "Breakfast", "Goat"];
 let decision;
 
+/* Helper function to format the parameters for the url */
 function formatQueryParams(params) {
     const queryItems = Object.keys(params)
       .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
     return queryItems.join('&');
   }
 
+  /* Displays the restaurant options */
 function eatOut(){
     decision = "restaurant";
     $('#left-box').append(`
@@ -34,15 +36,10 @@ function eatOut(){
     `);
 }
 
+/* Displays the cook at home options */
 function eatIn(){
     decision = "cook";
     let categoryString;
-    /*
-    for (let i = 0; i < categories.length; i++){
-        categoryString += `<option value = "${categories[i]}">${categories[i]}</option>`
-    }
-    $('#categories').append(categoryString);
-    */
 
     $('#left-box').append(
     `<form class = "eat-form">
@@ -52,8 +49,9 @@ function eatIn(){
         <button class = "eat-in search button">Search </button>
     </form>
     `);
-    //$('#categories').removeClass('hidden');
 }
+
+/* Helper function to turn an array into a separated html list */
 function getList(arr){
 let returnString = "";
     for (let i = 0; i < arr.length; i++){
@@ -62,16 +60,23 @@ let returnString = "";
     return returnString;
 }
 
+/* Results display function */
 function displayResults(responseJson){
     console.log(responseJson)
+
+    /* Display the cook at home results */
     if (decision === "cook"){
+        /* If the API can't find any results, inform user */
         if (responseJson.hits.length === 0){
             $('#cookResults').append(`No Results found. Try a different search term (Example: keto breakfast)`);
         }
-        //limit to 5 results
+        /* Loop through the results, limiting it to 5 */
         for (let i = 0; i < responseJson.hits.length & i<5; i++){
+            /* Adjust the calories result to only show two decimals  */
             let cal = responseJson.hits[i].recipe.calories.toFixed(2);
+            /* Get the ingredients result in a HTML list format */
             let ingredients = getList(responseJson.hits[i].recipe.ingredientLines);
+            /* Add results to the results section and the unordered list */
             $('#cookResults').append(`
                 <li><img src = "${responseJson.hits[i].recipe.image}" alt = "meal picture" width="50" height="50">
                     <h3>${responseJson.hits[i].recipe.label}</h3>
@@ -84,13 +89,16 @@ function displayResults(responseJson){
             `);
         }
     }
-
+    
+    /* Display the restaurant results */
     if (decision === "restaurant"){
+        /* If the API can't find any results, inform user */
         if (responseJson.total === 0){
             $('#restaurantResults').append(`No Results found. Try broadening your search radius.`);
         }
-
+        /* Loop through the results, limiting it to 5 */
         for (let i = 0; i < responseJson.businesses.length & i<5; i++){
+            /* Add results to the results section and the unordered list */
            $('#restaurantResults').append(`
                 <li><img src = "${responseJson.businesses[i].image_url}" alt = "restaurant picture" width="50" height="50">
                 <h3>${responseJson.businesses[i].name}</h3>
@@ -104,6 +112,7 @@ function displayResults(responseJson){
     }
 }
 
+/* Yelp API call and set up */
 function getRestaurants(foodTypeChoice, locationChoice, opennow, searchRadius){
     const params = {
         term: foodTypeChoice,
@@ -132,6 +141,7 @@ function getRestaurants(foodTypeChoice, locationChoice, opennow, searchRadius){
     });
 }
 
+/* EDAMAM API call and set up */
 function getRecipes(foodTypeChoice){
     const params = {
         app_id: APIID,
@@ -156,58 +166,67 @@ fetch(url)
     });
 }
 
+/* Watch for buttons home-btn, out-btn, random, search */
 function watchForm(){
     let locationChoice;
     let foodTypeChoice;
     let opennow;
+
+    /* Listen for user cliking the cook at home button */
     $('#options').on("click", "#home-btn", function(event){
         event.preventDefault();
+        /* Hide the starting view elements */
         $('.start').addClass('hidden');
-        //when they click home it should remove the right class
+        /* Adjust background image */
         $('#right-box').removeClass('out-img').addClass('no-img');
         eatIn();
 
     });
 
+    /* Listen for user cliking the restaurant button */
     $('#options').on("click", "#out-btn", function(event){
         event.preventDefault();
+        /* Hide the starting view elements */
         $('.start').addClass('hidden');
-       // when they click home it should move the left to right and remove cook
+        /* Adjust background images */
         $('#right-box').removeClass('out-img').addClass('no-img');
         $('#left-box').removeClass('home-img').addClass('out-img');
         eatOut();
     });
 
+    /* Gives the user random options depending on if they picked cook at home or restaurant */
     $('#left-box').on( "click", ".random", function(event){
         event.preventDefault();
         console.log("random pressed");
     });
 
+    /* Listens for when user has submitted form and gets and processes input */
     $('#left-box').on( "click", ".search", function(event){
         event.preventDefault();
+        /* Remove previous results if user has already searched */
         $('#cookResults').empty();
         $('#restaurantResults').empty();
 
         if (decision === "cook"){
             foodTypeChoice = $('#food-search-chosen').val();
-           // console.log(foodTypeChoice);
            getRecipes(foodTypeChoice);
         }
+
         if (decision === "restaurant"){
             foodTypeChoice = $('#food-type-chosen').val();
-           // console.log(foodTypeChoice);
             locationChoice = $('#location-chosen').val();
-           // console.log(locationChoice);
             radius = $('#search-radius').val();
             opennow = $("#onlyopen")[0].checked;
-            //console.log(opennow);
             getRestaurants(foodTypeChoice, locationChoice, opennow, radius);
         }
     });
+    /* Watch for the home or about buttons to be selected */
     watchHeader();
 }
 
+    /* Watch for the home or about buttons to be selected*/
 function watchHeader(){
+    /* Reset page to start view */
     $('#banner').on('click', '.reset-to-home', function(event){
         event.preventDefault();
         $('.start').removeClass('hidden');
