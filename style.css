@@ -1,30 +1,134 @@
 *{
     box-sizing: border-box;
 }
+
+/* General styling */
+body{
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+h2 {
+	font-family: 'Merriweather Sans', cursive;
+	font-weight: bold;
+	color: #000000;
+}
+
+
+h1, p{
+	font-weight: bold;
+	color: #000000;
+}
+
+/* Button Styling */
+.button{
+	box-shadow: inset 0px -34px 0px 0px #ffffff;
+	background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+	background-color: #ffffff;
+	border-radius: 6px;
+	border: 1px solid #dcdcdc;
+	/* display: inline-block; */
+	cursor: pointer;
+	color: #666666;
+	font-family: Arial;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 6px 24px;
+	text-decoration: none;
+    text-shadow: 0px 1px 0px #ffffff;
+}
+
+.button:hover {
+	background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+	background-color: #f6f6f6;
+}
+
+.button:active {
+	position: relative;
+	top: 1px;
+} 
+
+/* Header Styling and Nav Bar*/
+#banner ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-weight: bold;
+} 
+
+#banner li{
+  float: left;
+}
+
+#banner li a{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+/* Change the link color to #111 (black) on hover */
+#banner li a:hover {
+    background-color: #111;
+}
+
 header{
     text-align: center;
 }
-section{
-    border: solid 1px;
-    width: 50%;
-    height: 500px;
-    float: left;
+
+/* Start Page Styling */
+#home, #out{
+    padding-top: 9em;
 }
 
+/* Parent element of two sections */
 #options{
     text-align: center;
     width: 100%;
 }
 
+/* Sections Styling */
+section{
+    border: solid 1px;
+    width: 50%;
+    min-height: 500px;
+    float: left;
+}
+
+.home-img{
+	background-image: url("images/home.jpg");
+	height: 100%;
+	margin: 0;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin-bottom: 10px;
+}
+
+.out-img{
+	background-image: url("images/out.jpg");
+	height: 100%;
+	margin: 0;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin-bottom: 10px;
+} 
+
+.no-img{
+    background-color: lightslategray;
+}
+
+/* Used to hide elements */
 .hidden{
     display: none;
 }
 
+/* Results page */
 #cookResults{
-    /*
+    
     display: flex;
     flex-direction: column;
-*/
     list-style: none;
     text-align: left;
 }
@@ -56,3 +160,20 @@ section{
 #cautions ul::after{
     clear: right;
 }*/
+
+
+/* Footer Styling */
+#edamam-badge{
+    float: left;
+}
+
+#yelp{
+    float: right;
+    margin: 0;
+}
+
+figcaption{
+    color: lightgrey;
+    display:inline-block;
+    font-size: 80%;
+}

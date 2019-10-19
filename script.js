@@ -28,8 +28,8 @@ function eatOut(){
         <label for = "open-now" class = "eat-out">Only show currently open restaurants </label>
         <input type = "checkbox" name = "open-now" class = "eat-out" id = "onlyopen">
 
-        <button class = "eat-out random hidden">Random </button>
-        <button class = "eat-out search">Search </button>
+        <button class = "eat-out random hidden button">Random </button>
+        <button class = "eat-out search button">Search </button>
     </form>
     `);
 }
@@ -48,8 +48,8 @@ function eatIn(){
     `<form class = "eat-form">
         <label for = "food-search" class = "eat-out">Type of Food: </label>
         <input type = "text" name = "food-search" class = "eat-out" id = "food-search-chosen">
-        <button class = "eat-in random hidden">Random </button>
-        <button class = "eat-in search">Search </button>
+        <button class = "eat-in random hidden button">Random </button>
+        <button class = "eat-in search button">Search </button>
     </form>
     `);
     //$('#categories').removeClass('hidden');
@@ -162,13 +162,13 @@ function watchForm(){
     let opennow;
     $('#options').on("click", "#home-btn", function(event){
         event.preventDefault();
-        $('.start').css("display", "none");
+        $('.start').addClass('hidden');
         eatIn();
     });
 
     $('#options').on("click", "#out-btn", function(event){
         event.preventDefault();
-        $('.start').css("display", "none");
+        $('.start').addClass('hidden');
         eatOut();
     });
 
@@ -181,6 +181,7 @@ function watchForm(){
         event.preventDefault();
         $('#cookResults').empty();
         $('#restaurantResults').empty();
+        // $('#right-box').removeClass('out-img').addClass('no-img');
         if (decision === "cook"){
             foodTypeChoice = $('#food-search-chosen').val();
            // console.log(foodTypeChoice);
@@ -203,7 +204,7 @@ function watchForm(){
 function watchHeader(){
     $('#banner').on('click', '.reset-to-home', function(event){
         event.preventDefault();
-        $('.start').css("display", "inline-block");
+        $('.start').removeClass('hidden');
         $('#categories').addClass('hidden');
         $('#categories').empty();
         $('.eat-out').css("display", "none");

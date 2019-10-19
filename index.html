@@ -6,34 +6,39 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Help Me Decide</title>
     <link href="style.css" rel="stylesheet" type="text/css">
-    <script src="https://kit.fontawesome.com/f75289d3be.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans|Yeseva+One&display=swap" rel="stylesheet">
+    <!-- <script src="https://kit.fontawesome.com/f75289d3be.js" crossorigin="anonymous"></script> -->
     <script src="https://developer.edamam.com/attribution/badge.js"></script>
 </head>
 <body>
   <header id="banner">
-      <h1>Help Me Decide</h1>
-      <p>Are you hungry? Can't decide on what to eat? We've got you covered!</p>
-      <a class = "reset-to-home" href = ""><i class="fas fa-home"></i></a>
+    <nav>
+      <ul>
+        <li><a class = "reset-to-home" href="">Home</a></li>
+        <li><a href="">About</a></li>
+      </ul>   
+    </nav>
+    <h1>Help Me Decide</h1>
+    <p>Are you hungry? Can't decide on what to eat? We've got you covered!</p>
+<!--   <a class = "reset-to-home" href = ""><i class="fas fa-home"></i></a> !-->
   </header>  
   <div id = options>
-    <section id = "left-box">
-      <form id = "home">
+    <section id = "left-box" class = "home-img">
+      <form id = "home" class = "start">
         <h2 class ="start">Cook at home</h2>
-        <input type = "submit" class = "start" value = "Lets make some food!" id = "home-btn">
+        <input type = "submit" class = "start button" value = "Lets make some food!" id = "home-btn">
         <select id = "categories" class = "hidden">
         </select>
       </form>
     </section>
-    <section id = "right-box">
-      <form id = "out">
+    <section id = "right-box" class = "out-img">
+      <form id = "out" class = "start">
         <h2 class = "start">Go out to eat</h2>
-        <input type = "submit" class = "start" value = "Find me some restaurants!" id = "out-btn">
+        <input type = "submit" class = "start button" value = "Find me some restaurants!" id = "out-btn">
       </form>
       <div class = "results">
         <ul id = "cookResults"></ul>
-        <ul id = "restaurantResults">
-          
-        </ul>
+        <ul id = "restaurantResults"></ul>
       </div>
     </section>
   </div>
@@ -44,5 +49,9 @@
 </body>
 <footer>
   <div id="edamam-badge" data-color="white"></div>
+  <figure id = "yelp">
+    <figcaption>Powered By</figcaption>
+    <img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Yelp_Logo.svg/1200px-Yelp_Logo.svg.png" alt = "yelp logo" height = "50">
+  </figure>
 </footer>
 </html>
