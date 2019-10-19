@@ -3,7 +3,6 @@ const apikeyRecipe = "6dc79f0942a7ef71e2b035618600378e";
 const apiKeyYelp = "MzC-vR8dGg4sB93woVcMeZoy_2-6iX1EQv9bCUev0uQJRuIbRuO-1K6R4JmaAiSv8yLQZtFofBKQrLG1zrq80dFTVwKJ3Zfs44fmJM2sgoSXNYkeXO0-xIUS8kapXXYx";
 const searchURLRecipe = "https://api.edamam.com/search"; 
 const searchURLYelp = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search";
-const categories = ["Beef", "Chicken", "Dessert", "Lamb", "Miscellaneous", "Pasta", "Pork", "Seafood", "Side", "Starter", "Vegan", "Vegetarian", "Breakfast", "Goat"];
 let decision;
 
 /* Helper function to format the parameters for the url */
@@ -17,7 +16,7 @@ function formatQueryParams(params) {
 function eatOut(){
     decision = "restaurant";
     $('#left-box').append(`
-    <form class = "eat-form">
+    <form class = "eat-form" id = "restaurant-options-box>
         <label for = "food-type" class = "eat-out">Type of Food: </label>
         <input type = "text" name = "food-type" class = "eat-out" id = "food-type-chosen">
 
@@ -43,10 +42,17 @@ function eatIn(){
 
     $('#left-box').append(
     `<form class = "eat-form">
-        <label for = "food-search" class = "eat-out">Type of Food: </label>
-        <input type = "text" name = "food-search" class = "eat-out" id = "food-search-chosen">
+        <label for = "food-search" class = "eat-in">Type of Food: </label>
+        <input type = "text" name = "food-search" class = "eat-in" id = "food-search-chosen">
         <button class = "eat-in random hidden button">Random </button>
         <button class = "eat-in search button">Search </button>
+        <p class = "eat-in">Not sure where to start? Here's some suggestions for things to search for:</p>
+        <ul class = "eat-in"><li>Meal type: Breakfast, Lunch, Dinner, Snack</li>
+        <li>Health options: Low-Carb, Dairy Free, Keto, Kosher, etc.</li>
+        <li>Cuisine Type: Desserts, Caribbean, Japanese, Soup, etc.</li>
+        <li>Keywords: taco, burger, pancakes, etc.</li>
+        <li>Or try a combination: Dairy free breakfast, Japanese snack, etc.</li>
+        </ul>
     </form>
     `);
 }
@@ -89,7 +95,7 @@ function displayResults(responseJson){
             `);
         }
     }
-    
+
     /* Display the restaurant results */
     if (decision === "restaurant"){
         /* If the API can't find any results, inform user */
@@ -230,8 +236,6 @@ function watchHeader(){
     $('#banner').on('click', '.reset-to-home', function(event){
         event.preventDefault();
         $('.start').removeClass('hidden');
-        $('#categories').addClass('hidden');
-        $('#categories').empty();
         $('.eat-out').css("display", "none");
         $('.eat-in').css("display", "none");
         $('#cookResults').empty();

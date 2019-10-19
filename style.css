@@ -178,3 +178,10 @@ figcaption{
     display:inline-block;
     font-size: 80%;
 }
+
+/* Search form styling   */
+.eat-form{
+    padding-top: 4em;
+    padding-left: 1em;
+    text-align: left;
+}
