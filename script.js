@@ -90,7 +90,7 @@ function displayResults(responseJson){
                     <h4 class = "line">Total Time:</h4><p> ${responseJson.hits[i].recipe.totalTime} minutes</p>
                     <h4>Allergy Information:</h4> <ul id = "cautions">${getList(responseJson.hits[i].recipe.cautions)}</ul>
                     <h4>Ingredients Needed: </h4><ul id = "ingredients">${ingredients}</ul>
-                    <a href = "${responseJson.hits[i].recipe.url}" target="_blank" id = "link">Link to see full recipe </a>
+                    <a href = "${responseJson.hits[i].recipe.url}" target="_blank" class = "link">Link to see full recipe </a>
                 </li>
             `);
         }
@@ -106,13 +106,16 @@ function displayResults(responseJson){
         for (let i = 0; i < responseJson.businesses.length & i<5; i++){
             /* Add results to the results section and the unordered list */
            $('#restaurantResults').append(`
-                <li><img src = "${responseJson.businesses[i].image_url}" alt = "restaurant picture" width="50" height="50">
-                <h3>${responseJson.businesses[i].name}</h3>
-                <h4>Price ${responseJson.businesses[i].price}</h4>
-                <h4>Rating ${responseJson.businesses[i].rating}</h4>
-                <p>${responseJson.businesses[i].location.display_address}</p>
-                <p>${responseJson.businesses[i].display_phone}</p>
-                <a href = "${responseJson.businesses[i].url}">Link to see more information</a></li>
+                <li class = "result-item">
+                    <img src = "${responseJson.businesses[i].image_url}" alt = "restaurant picture">
+                <div id = "restaurant-div">
+                    <h3>${responseJson.businesses[i].name}</h3>
+                    <h4 class = "line">Price </h4><p id ="price"> ${responseJson.businesses[i].price}</p>
+                    <h4 class = "line">Rating </h4><p> ${responseJson.businesses[i].rating}</p>
+                    <p class = "text-line">${responseJson.businesses[i].location.display_address}</p>
+                    <p class = "text-line">${responseJson.businesses[i].display_phone}</p>
+                    <a href = "${responseJson.businesses[i].url}" target="_blank" class = "link">Link to see more information</a></li>
+                </div>
             `);
         }
     }

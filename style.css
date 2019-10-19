@@ -28,7 +28,6 @@ p {
 	background-color: #ffffff;
 	border-radius: 6px;
 	border: 1px solid #dcdcdc;
-	/* display: inline-block; */
 	cursor: pointer;
 	color: #666666;
 	font-family: Arial;
@@ -83,7 +82,9 @@ header {
 /* Start Page Styling */
 #home,
 #out {
-	padding-top: 9em;
+    padding-top: 2em;
+    padding-bottom: 5em;
+    margin: auto;
 }
 
 /* Parent element of two sections */
@@ -94,10 +95,9 @@ header {
 
 /* Sections Styling */
 section {
-	border: solid 1px;
-	width: 50%;
-	min-height: 500px;
-	float: left;
+    border: solid 1px;
+    display: flex;
+    height: 10em;
 }
 
 .home-img {
@@ -128,6 +128,13 @@ section {
 }
 
 /* Results page */
+.results{
+    overflow: auto;
+}
+
+#right-box{
+    height: 18em;
+}
 #cookResults, #restaurantResults{
     font-family: 'Open Sans', sans-serif;
 }
@@ -144,6 +151,7 @@ section {
     float: left;
     margin-right: 2em;
     max-width: 13em;
+    max-height: 13em;
     border: 1px groove;
 }
 
@@ -161,8 +169,14 @@ section {
     margin-bottom: 1em;
 }
 
-#link{
+#cookResults .link{
     padding-left: 15em;
+    font-weight: bold;
+    color: rgb(69,73,67);
+}
+
+#restaurantResults .link{
+    padding-left: 5em;
     font-weight: bold;
     color: rgb(69,73,67);
 }
@@ -178,6 +192,7 @@ section {
     padding: 1em;
     margin: 1em;
     width: 95%;
+    height: 100%;
     background-color: #CBAFA0;
     border-radius: 7px;
 }
@@ -204,12 +219,19 @@ section {
 	text-align: left;
 }
 
-
 #restaurantResults {
-	list-style: none;
+    list-style: none;
+    text-align: left;
 }
 
+.text-line{
+    text-align: center;
+}
 
+#price{
+    color: rgb(65,133,87);
+    font-size: 120%;
+}
 
 /* Footer Styling */
 #edamam-badge {
@@ -245,4 +267,26 @@ select {
 	margin: 4px 0;
 	padding: 6px 8px;
 	width: auto;
+}
+
+@media only screen and (min-width: 780px) {
+    
+    #home,
+    #out {
+        padding-top: 9em;
+    }
+
+    /* Sections Styling */
+    section {
+        border: solid 1px;
+        width: 50%;
+        min-height: 500px;
+        float: left;
+    }
+    
+    /* Restaurant Styling */
+    #restaurant-div{
+        padding-left: 10em;
+    }
+
 }
