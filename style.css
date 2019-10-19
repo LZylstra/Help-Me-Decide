@@ -12,8 +12,8 @@ h2 {
 	font-weight: bold;
 	color: #000000;
 }
-h1{
-    font-family: 'Playfair Display', serif;
+h1 {
+	font-family: 'Playfair Display', serif;
 }
 h1,
 p {
@@ -144,13 +144,13 @@ section {
 #cookResults, #restaurantResults{
     font-family: 'Open Sans', sans-serif;
 }
-.results ul{
-    padding: 0;
-    list-style-position: inside;
+.results ul {
+	padding: 0;
+	list-style-position: inside;
 }
 
-.results li{
-    padding-left: 1em;
+.results li {
+	padding-left: 1em;
 }
 
 .results img{
@@ -161,18 +161,20 @@ section {
     border: 1px groove;
 }
 
-.results h3{
-    font-weight: bolder;
-    font-family: 'Playfair Display', serif;
-    font-size: 150%;
+.results h3 {
+	font-weight: bolder;
+	font-family: 'Playfair Display', serif;
+	font-size: 150%;
 }
-.results p{
-    font-weight: normal;
-    width: 100%;
+.results p {
+	font-weight: normal;
+	width: 100%;
 }
-.results h3, h4, p{
-    margin-top: 0;
-    margin-bottom: 1em;
+.results h3,
+h4,
+p {
+	margin-top: 0;
+	margin-bottom: 1em;
 }
 
 #cookResults .link{
@@ -190,8 +192,8 @@ section {
 .result-item h4{
     padding-right: 1em;
 }
-.line{
-    float: left;
+.line {
+	float: left;
 }
 .result-item{
     border: 2px outset;
@@ -204,18 +206,18 @@ section {
 }
 
 #cautions {
-    list-style: none;
-    padding-bottom: 2em;
+	list-style: none;
+	padding-bottom: 2em;
 }
 
-#cautions li{
-    display: inline-block;
+#cautions li {
+	display: inline-block;
 }
-#ingredients{
-    padding-bottom: 2em;
+#ingredients {
+	padding-bottom: 2em;
 }
-#ingredients li{
-    margin-right: 5em;
+#ingredients li {
+	margin-right: 5em;
 }
 
 #cookResults {
@@ -304,4 +306,64 @@ select {
     }
     
 
+}
+/*This styles all of the text fields */
+
+input[type=text],
+select {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	display: inline-block;
+	margin: 8px 0;
+	padding: 8px 16px;
+	width: auto;
+}
+
+/* Restaurant Search Form Style */
+
+#food-type-chosen {
+	display: block;
+}
+#location-chosen {
+	display: block;
+}
+
+#search-radius {
+	display: block;
+}
+
+#onlyopen {
+	display: block;
+	float: left;
+}
+
+#search-btn {
+    display: block;
+    margin-top: 4px;
+}
+
+input[type=checkbox].css-checkbox {
+	position: absolute;
+	z-index: -1000;
+	left: -1000px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	width: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
+}
+
+input[type=checkbox].css-checkbox + label.css-label {
+	padding-left: 35px;
+	height: 30px;
+	display: inline-block;
+	line-height: 30px;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	font-size: 30px;
+	vertical-align: middle;
+	cursor: pointer;
 }

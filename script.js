@@ -29,7 +29,7 @@ function eatOut(){
         <label for = "open-now" class = "eat-out">Only show currently open restaurants </label>
         <input type = "checkbox" name = "open-now" class = "eat-out" id = "onlyopen">
 
-        <button class = "eat-out search button">Search </button>
+        <button class = "eat-out search button" id ="search-btn">Search </button>
         <button class = "eat-out random hidden button">Random </button>
     </form>
     `);
