@@ -12,8 +12,8 @@ h2 {
 	font-weight: bold;
 	color: #000000;
 }
-h1{
-    font-family: 'Playfair Display', serif;
+h1 {
+	font-family: 'Playfair Display', serif;
 }
 h1,
 p {
@@ -128,73 +128,76 @@ section {
 }
 
 /* Results page */
-#cookResults, #restaurantResults{
-    font-family: 'Open Sans', sans-serif;
+#cookResults,
+#restaurantResults {
+	font-family: 'Open Sans', sans-serif;
 }
-.results ul{
-    padding: 0;
-    list-style-position: inside;
-}
-
-.results li{
-    padding-left: 1em;
+.results ul {
+	padding: 0;
+	list-style-position: inside;
 }
 
-.results img{
-    float: left;
-    margin-right: 2em;
-    max-width: 13em;
-    border: 1px groove;
+.results li {
+	padding-left: 1em;
 }
 
-.results h3{
-    font-weight: bolder;
-    font-family: 'Playfair Display', serif;
-    font-size: 150%;
-}
-.results p{
-    font-weight: normal;
-    width: 100%;
-}
-.results h3, h4, p{
-    margin-top: 0;
-    margin-bottom: 1em;
+.results img {
+	float: left;
+	margin-right: 2em;
+	max-width: 13em;
+	border: 1px groove;
 }
 
-#link{
-    padding-left: 15em;
-    font-weight: bold;
-    color: rgb(69,73,67);
+.results h3 {
+	font-weight: bolder;
+	font-family: 'Playfair Display', serif;
+	font-size: 150%;
+}
+.results p {
+	font-weight: normal;
+	width: 100%;
+}
+.results h3,
+h4,
+p {
+	margin-top: 0;
+	margin-bottom: 1em;
 }
 
-.result-item h4{
-    padding-right: 1em;
+#link {
+	padding-left: 15em;
+	font-weight: bold;
+	color: rgb(69, 73, 67);
 }
-.line{
-    float: left;
+
+.result-item h4 {
+	padding-right: 1em;
 }
-.result-item{
-    border: 2px outset;
-    padding: 1em;
-    margin: 1em;
-    width: 95%;
-    background-color: #CBAFA0;
-    border-radius: 7px;
+.line {
+	float: left;
+}
+.result-item {
+	border: 2px outset;
+	padding: 1em;
+	margin: 1em;
+	width: 95%;
+	background-color: #cbafa0;
+	border-radius: 7px;
 }
 
 #cautions {
-    list-style: none;
-    padding-bottom: 2em;
+	list-style: none;
+	padding-bottom: 2em;
 }
 
-#cautions li{
-    display: inline-block;
+#cautions li {
+	display: inline-block;
 }
-#ingredients{
-    padding-bottom: 2em;
+#ingredients {
+	padding-bottom: 2em;
 }
-#ingredients li{
-    margin-right: 5em;
+#ingredients li {
+	margin-right: 5em;
 }
 
 #cookResults {
@@ -204,12 +207,9 @@ section {
 	text-align: left;
 }
 
-
 #restaurantResults {
 	list-style: none;
 }
-
-
 
 /* Footer Styling */
 #edamam-badge {
@@ -246,7 +246,7 @@ select {
 	padding: 6px 8px;
 	width: auto;
 }
-*This styles all of the text fields */
+/*This styles all of the text fields */
 
 input[type=text],
 select {
@@ -274,28 +274,34 @@ select {
 
 #onlyopen {
 	display: block;
+	float: left;
 }
 
 #eat-out search button {
 	display: block;
 }
 
-
-
-
-
 input[type=checkbox].css-checkbox {
-							position:absolute; z-index:-1000; left:-1000px; overflow: hidden; clip: rect(0 0 0 0); height:1px; width:1px; margin:-1px; padding:0; border:0;
-						}
+	position: absolute;
+	z-index: -1000;
+	left: -1000px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	width: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
+}
 
-						input[type=checkbox].css-checkbox + label.css-label {
-							padding-left:35px;
-							height:30px; 
-							display:inline-block;
-							line-height:30px;
-							background-repeat:no-repeat;
-							background-position: 0 0;
-							font-size:30px;
-							vertical-align:middle;
-							cursor:pointer;
-
+input[type=checkbox].css-checkbox + label.css-label {
+	padding-left: 35px;
+	height: 30px;
+	display: inline-block;
+	line-height: 30px;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	font-size: 30px;
+	vertical-align: middle;
+	cursor: pointer;
+}
