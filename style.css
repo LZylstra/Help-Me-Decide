@@ -246,3 +246,56 @@ select {
 	padding: 6px 8px;
 	width: auto;
 }
+*This styles all of the text fields */
+
+input[type=text],
+select {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	display: inline-block;
+	margin: 8px 0;
+	padding: 8px 16px;
+	width: auto;
+}
+
+/* Restaurant Search Form Style */
+
+#food-type-chosen {
+	display: block;
+}
+#location-chosen {
+	display: block;
+}
+
+#search-radius {
+	display: block;
+}
+
+#onlyopen {
+	display: block;
+}
+
+#eat-out search button {
+	display: block;
+}
+
+
+
+
+
+input[type=checkbox].css-checkbox {
+							position:absolute; z-index:-1000; left:-1000px; overflow: hidden; clip: rect(0 0 0 0); height:1px; width:1px; margin:-1px; padding:0; border:0;
+						}
+
+						input[type=checkbox].css-checkbox + label.css-label {
+							padding-left:35px;
+							height:30px; 
+							display:inline-block;
+							line-height:30px;
+							background-repeat:no-repeat;
+							background-position: 0 0;
+							font-size:30px;
+							vertical-align:middle;
+							cursor:pointer;
+
