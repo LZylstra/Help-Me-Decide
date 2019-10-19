@@ -20,25 +20,39 @@ section{
     display: none;
 }
 
-
 #cookResults{
+    /*
     display: flex;
     flex-direction: column;
-
+*/
     list-style: none;
-}
-
-#cookResults img{
-    float: left;
-}
-
-#resturantResults{
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-}
-
-#resturantResults li{
     text-align: left;
 }
+/*
+#cookResults img{
+    float: left;
+}*/
 
+#restaurantResults{/*
+    display: flex;
+    flex-direction: column;*/
+    list-style: none;
+}
+/*
+#restaurantResults li{
+    text-align: left;
+}
+*/
+
+#cautions{
+    list-style: none;
+}
+/*
+#cautions li{
+    float: left;
+    padding-left: 1em;
+}
+
+#cautions ul::after{
+    clear: right;
+}*/

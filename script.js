@@ -1,6 +1,7 @@
-const apiKeyMealDB = 1;
+const APIID = "1e922488";
+const apikeyRecipe = "6dc79f0942a7ef71e2b035618600378e";
 const apiKeyYelp = "MzC-vR8dGg4sB93woVcMeZoy_2-6iX1EQv9bCUev0uQJRuIbRuO-1K6R4JmaAiSv8yLQZtFofBKQrLG1zrq80dFTVwKJ3Zfs44fmJM2sgoSXNYkeXO0-xIUS8kapXXYx";
-const searchURLMealDB = "https://www.themealdb.com/api/json/v1/1/filter.php"; 
+const searchURLRecipe = "https://api.edamam.com/search"; 
 const searchURLYelp = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search";
 const categories = ["Beef", "Chicken", "Dessert", "Lamb", "Miscellaneous", "Pasta", "Pork", "Seafood", "Side", "Starter", "Vegan", "Vegetarian", "Breakfast", "Goat"];
 let decision;
@@ -12,7 +13,7 @@ function formatQueryParams(params) {
   }
 
 function eatOut(){
-    decision = "resturant";
+    decision = "restaurant";
     $('#left-box').append(`
     <form class = "eat-form">
         <label for = "food-type" class = "eat-out">Type of Food: </label>
@@ -21,7 +22,10 @@ function eatOut(){
         <label for = "location" class = "eat-out">Location: </label>
         <input type = "text" name = "location" class = "eat-out" id = "location-chosen">
 
-        <label for = "open-now" class = "eat-out">Only show currently open resturants </label>
+        <label for = "radius" class = "eat-out">Search Radius: </label>
+        <input type = "text" name = "radius" class = "eat-out" id = "search-radius">
+
+        <label for = "open-now" class = "eat-out">Only show currently open restaurants </label>
         <input type = "checkbox" name = "open-now" class = "eat-out" id = "onlyopen">
 
         <button class = "eat-out random hidden">Random </button>
@@ -33,131 +37,123 @@ function eatOut(){
 function eatIn(){
     decision = "cook";
     let categoryString;
-
+    /*
     for (let i = 0; i < categories.length; i++){
         categoryString += `<option value = "${categories[i]}">${categories[i]}</option>`
     }
-
     $('#categories').append(categoryString);
-    
+    */
+
     $('#left-box').append(
     `<form class = "eat-form">
+        <label for = "food-search" class = "eat-out">Type of Food: </label>
+        <input type = "text" name = "food-search" class = "eat-out" id = "food-search-chosen">
         <button class = "eat-in random hidden">Random </button>
         <button class = "eat-in search">Search </button>
     </form>
     `);
-    $('#categories').removeClass('hidden');
+    //$('#categories').removeClass('hidden');
 }
-/*
-function getResults(foodTypeChoice, locationChoice, opennow){
-    let url;
-    if (decision === "cook"){
-        url = searchURLMealDB + "?c=" + foodTypeChoice;
-        console.log(url);
-
-        fetch(url)
-        .then(response =>{
-            if (response.ok){
-                return response.json();
-            }
-            throw new Error(response.statusText);
-        })
-        .then(responseJson => displayResults(responseJson))
-        .catch(err =>{
-            $('#js-error-message').text(`Something went wrong: ${err.message}`);
-        });
+function getList(arr){
+let returnString = "";
+    for (let i = 0; i < arr.length; i++){
+        returnString += `<li>${arr[i]}</li>`;
     }
-    if (decision === "resturant"){
-        const params = {
-            term: foodTypeChoice,
-            location: locationChoice,
-            open_now: opennow
-        }
-        const queryString = $.param(params);
-        url = searchURLYelp + '?' + queryString;
-        console.log(url);
-        fetch(url, {headers: {
-            "accept": "application/json",
-            "x-requested-with": "XMLHttpRequest",
-            "Access-Control-Allow-Origin":"*",
-            "Authorization": `Bearer ${apiKeyYelp}`}})
-        .then(response =>{
-            if (response.ok){
-                return response.json();
-            }
-            throw new Error(response.statusText);
-        })
-        .then(responseJson => displayResults(responseJson))
-        .catch(err =>{
-            $('#js-error-message').text(`Something went wrong: ${err.message}`);
-        });
-    }
-}*/
+    return returnString;
+}
 
 function displayResults(responseJson){
     console.log(responseJson)
     if (decision === "cook"){
+        if (responseJson.hits.length === 0){
+            $('#cookResults').append(`No Results found. Try a different search term (Example: keto breakfast)`);
+        }
         //limit to 5 results
-        for (let i = 0; i < responseJson.meals.length & i<5; i++){
+        for (let i = 0; i < responseJson.hits.length & i<5; i++){
+            let cal = responseJson.hits[i].recipe.calories.toFixed(2);
+            let ingredients = getList(responseJson.hits[i].recipe.ingredientLines);
             $('#cookResults').append(`
-                    <li><img src = "${responseJson.meals[i].strMealThumb}" alt = "meal picture" width="50" height="50">
-                    <h3>${responseJson.meals[i].strMeal}</h3></li>
-                `);
+                <li><img src = "${responseJson.hits[i].recipe.image}" alt = "meal picture" width="50" height="50">
+                    <h3>${responseJson.hits[i].recipe.label}</h3>
+                    <h4>Calories: ${cal}</h4>
+                    <h4>Total Time: ${responseJson.hits[i].recipe.totalTime} minutes</h4>
+                    <p>Allergy Information:</p> <ul id = "cautions">${getList(responseJson.hits[i].recipe.cautions)}</ul>
+                    <p>Ingredients Needed: </p><ul>${ingredients}</ul>
+                    <a href = "${responseJson.hits[i].recipe.url}">Link to see full recipe </a>
+                </li>
+            `);
         }
     }
-    if (decision === "resturant"){
+
+    if (decision === "restaurant"){
+        if (responseJson.total === 0){
+            $('#restaurantResults').append(`No Results found. Try broadening your search radius.`);
+        }
+
         for (let i = 0; i < responseJson.businesses.length & i<5; i++){
-            $('#resturantResults').append(`
-                <li><h3>${responseJson.businesses[i].name}</h3></li>
-                <li><h4>Rating: ${responseJson.businesses[i].rating}</h4></li>
-                <li><a href = "${responseJson.businesses[i].url}">Link to see more information</a></li>
+           $('#restaurantResults').append(`
+                <li><img src = "${responseJson.businesses[i].image_url}" alt = "restaurant picture" width="50" height="50">
+                <h3>${responseJson.businesses[i].name}</h3>
+                <h4>Price ${responseJson.businesses[i].price}</h4>
+                <h4>Rating ${responseJson.businesses[i].rating}</h4>
+                <p>${responseJson.businesses[i].location.display_address}</p>
+                <p>${responseJson.businesses[i].display_phone}</p>
+                <a href = "${responseJson.businesses[i].url}">Link to see more information</a></li>
             `);
         }
     }
 }
 
-function getResturants(foodTypeChoice, locationChoice, opennow){
-        const params = {
-            term: foodTypeChoice,
-            location: locationChoice,
-            open_now: opennow
+function getRestaurants(foodTypeChoice, locationChoice, opennow, searchRadius){
+    const params = {
+        term: foodTypeChoice,
+        location: locationChoice,
+        open_now: opennow,
+        radius: searchRadius
+    }
+    const queryString = $.param(params);
+    let url = searchURLYelp + '?' + queryString;
+    console.log(url);
+    
+    fetch(url, {headers: {
+        "accept": "application/json",
+        "x-requested-with": "XMLHttpRequest",
+        "Access-Control-Allow-Origin":"*",
+        "Authorization": `Bearer ${apiKeyYelp}`}})
+    .then(response =>{
+        if (response.ok){
+            return response.json();
         }
-        const queryString = $.param(params);
-        url = searchURLYelp + '?' + queryString;
-        console.log(url);
-        fetch(url, {headers: {
-            "accept": "application/json",
-            "x-requested-with": "XMLHttpRequest",
-            "Access-Control-Allow-Origin":"*",
-            "Authorization": `Bearer ${apiKeyYelp}`}})
-        .then(response =>{
-            if (response.ok){
-                return response.json();
-            }
-            throw new Error(response.statusText);
-        })
-        .then(responseJson => displayResults(responseJson))
-        .catch(err =>{
-            $('#js-error-message').text(`Something went wrong: ${err.message}`);
-        });
+        throw new Error(response.statusText);
+    })
+    .then(responseJson => displayResults(responseJson))
+    .catch(err =>{
+        $('#js-error-message').text(`Something went wrong: ${err.message}`);
+    });
 }
 
 function getRecipes(foodTypeChoice){
-    let url;
-        url = searchURLMealDB + "?c=" + foodTypeChoice;
-        console.log(url);
+    const params = {
+        app_id: APIID,
+        app_key: apikeyRecipe,
+        q: foodTypeChoice
+    }
+    const queryString = $.param(params);
+    let url = searchURLRecipe + "?" + queryString;
 
-        fetch(url)
-        .then(response =>{
-            if (response.ok){
-                return response.json();
-            }
-            throw new Error(response.statusText);
-        })
-        .then(responseJson => displayResults(responseJson))
-        .catch(err =>{
-            $('#js-error-message').text(`Something went wrong: ${err.message}`);
-        });
+    console.log(url);
+
+fetch(url)
+    .then(response =>{
+        if (response.ok){
+            return response.json();
+        }
+        throw new Error(response.statusText);
+    })
+    .then(responseJson => displayResults(responseJson))
+    .catch(err =>{
+        $('#js-error-message').text(`Something went wrong: ${err.message}`);
+    });
 }
 
 function watchForm(){
@@ -184,20 +180,21 @@ function watchForm(){
     $('#left-box').on( "click", ".search", function(event){
         event.preventDefault();
         $('#cookResults').empty();
-        $('#resturantResults').empty();
+        $('#restaurantResults').empty();
         if (decision === "cook"){
-            foodTypeChoice = $('#categories').val();
+            foodTypeChoice = $('#food-search-chosen').val();
            // console.log(foodTypeChoice);
            getRecipes(foodTypeChoice);
         }
-        if (decision === "resturant"){
+        if (decision === "restaurant"){
             foodTypeChoice = $('#food-type-chosen').val();
            // console.log(foodTypeChoice);
             locationChoice = $('#location-chosen').val();
            // console.log(locationChoice);
+            radius = $('#search-radius').val();
             opennow = $("#onlyopen")[0].checked;
             //console.log(opennow);
-            getResturants(foodTypeChoice, locationChoice, opennow);
+            getRestaurants(foodTypeChoice, locationChoice, opennow, radius);
         }
     });
     watchHeader();
@@ -212,7 +209,7 @@ function watchHeader(){
         $('.eat-out').css("display", "none");
         $('.eat-in').css("display", "none");
         $('#cookResults').empty();
-        $('#resturantResults').empty();
+        $('#restaurantResults').empty();
     })
 }
 

@@ -7,6 +7,7 @@
     <title>Help Me Decide</title>
     <link href="style.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/f75289d3be.js" crossorigin="anonymous"></script>
+    <script src="https://developer.edamam.com/attribution/badge.js"></script>
 </head>
 <body>
   <header id="banner">
@@ -26,10 +27,14 @@
     <section id = "right-box">
       <form id = "out">
         <h2 class = "start">Go out to eat</h2>
-        <input type = "submit" class = "start" value = "Find me some resturants!" id = "out-btn">
+        <input type = "submit" class = "start" value = "Find me some restaurants!" id = "out-btn">
       </form>
-      <ul id = "cookResults"></ul>
-      <ul id = "resturantResults"></ul>
+      <div class = "results">
+        <ul id = "cookResults"></ul>
+        <ul id = "restaurantResults">
+          
+        </ul>
+      </div>
     </section>
   </div>
   <p id ="js-error-message" class="error-message"></p>
@@ -37,4 +42,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="script.js"></script>
 </body>
+<footer>
+  <div id="edamam-badge" data-color="white"></div>
+</footer>
 </html>
