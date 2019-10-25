@@ -16,21 +16,30 @@ function formatQueryParams(params) {
 function eatOut(){
     decision = "restaurant";
     $('#left-box').append(`
-    <form class = "eat-form" id = "restaurant-options-box">
-        <label for = "food-type" class = "eat-out">Type of Food: </label>
+    <form class = "eat-form outline" id = "restaurant-options-box">
+        <label for = "food-type-chosen" class = "eat-out block">Type of Food: </label>
         <input type = "text" name = "food-type" class = "eat-out" id = "food-type-chosen">
 
-        <label for = "location" class = "eat-out">Location: </label>
-        <input type = "text" name = "location" class = "eat-out" id = "location-chosen">
+        <label for = "location-chosen" class = "eat-out block">Location: </label>
+        <input type = "text" name = "location" class = "eat-out" id = "location-chosen" placeholder="city, state, address, zip, etc." required>
 
-        <label for = "radius" class = "eat-out">Search Radius: </label>
-        <input type = "text" name = "radius" class = "eat-out" id = "search-radius">
+        <label for = "search-radius" class = "eat-out block">Search Radius: </label>
+        <input type = "number" name = "radius" class = "eat-out block" id = "search-radius" placeholder="distance in meters">
 
-        <label for = "open-now" class = "eat-out">Only show currently open restaurants </label>
+        <label for = "onlyopen" class = "eat-out" id = "check">Only show currently open restaurants </label>
         <input type = "checkbox" name = "open-now" class = "eat-out" id = "onlyopen">
 
         <button class = "eat-out search button" id ="search-btn">Search </button>
         <button class = "eat-out random hidden button">Random </button>
+
+        <p class = "eat-out">Not sure where to start? Here's some suggestions for things to search for:</p>
+
+        <ul class = "eat-in"><li>Meal type: Breakfast, Lunch, Dinner, Snack</li>
+        <li>Health options: Low-Carb, Dairy Free, Keto, Kosher, etc.</li>
+        <li>Cuisine Type: Desserts, Caribbean, Japanese, Soup, etc.</li>
+        <li>Keywords: taco, burger, pancakes, etc.</li>
+        <li>Or try a combination: Dairy free breakfast, Japanese snack, etc.</li>
+        </ul>
     </form>
     `);
 }
@@ -41,11 +50,13 @@ function eatIn(){
     let categoryString;
 
     $('#left-box').append(
-    `<form class = "eat-form" id = "eat-form-in">
-        <label for = "food-search" class = "eat-in">Type of Food: </label>
+    `<form class = "eat-form outline" id = "eat-form-in">
+        <label for = "food-search-chosen" class = "eat-in">Type of Food: </label>
         <input type = "text" name = "food-search" class = "eat-in" id = "food-search-chosen">
+
         <button class = "eat-in search button">Search </button>
         <button class = "eat-in random hidden button">Random </button>
+
         <p class = "eat-in">Not sure where to start? Here's some suggestions for things to search for:</p>
         <ul class = "eat-in"><li>Meal type: Breakfast, Lunch, Dinner, Snack</li>
         <li>Health options: Low-Carb, Dairy Free, Keto, Kosher, etc.</li>
@@ -68,7 +79,6 @@ let returnString = "";
 
 /* Results display function */
 function displayResults(responseJson){
-    console.log(responseJson)
     $('#results').removeClass('hidden');
     /* Display the cook at home results */
     if (decision === "cook"){
@@ -84,7 +94,7 @@ function displayResults(responseJson){
             let ingredients = getList(responseJson.hits[i].recipe.ingredientLines);
             /* Add results to the results section and the unordered list */
             $('#cookResults').append(`
-                <li class = "result-item"><img src = "${responseJson.hits[i].recipe.image}" alt = "meal picture">
+                <li class = "result-item outline"><img src = "${responseJson.hits[i].recipe.image}" alt = "meal picture">
                     <div class = "breakthings">
                     <h3>${responseJson.hits[i].recipe.label}</h3>
                     <h4 class = "line">Calories:</h4><p> ${cal}</p>
@@ -108,7 +118,7 @@ function displayResults(responseJson){
         for (let i = 0; i < responseJson.businesses.length & i<5; i++){
             /* Add results to the results section and the unordered list */
            $('#restaurantResults').append(`
-                <li class = "result-item">
+                <li class = "result-item outline">
                     <img src = "${responseJson.businesses[i].image_url}" alt = "restaurant picture">
                 <div id = "restaurant-div">
                     <h3>${responseJson.businesses[i].name}</h3>
@@ -133,7 +143,6 @@ function getRestaurants(foodTypeChoice, locationChoice, opennow, searchRadius){
     }
     const queryString = $.param(params);
     let url = searchURLYelp + '?' + queryString;
-    console.log(url);
     
     fetch(url, {headers: {
         "accept": "application/json",
@@ -161,8 +170,6 @@ function getRecipes(foodTypeChoice){
     }
     const queryString = $.param(params);
     let url = searchURLRecipe + "?" + queryString;
-
-    console.log(url);
 
 fetch(url)
     .then(response =>{
@@ -208,7 +215,6 @@ function watchForm(){
     /* Gives the user random options depending on if they picked cook at home or restaurant */
     $('#left-box').on( "click", ".random", function(event){
         event.preventDefault();
-        console.log("random pressed");
     });
 
     /* Listens for when user has submitted form and gets and processes input */
@@ -217,6 +223,7 @@ function watchForm(){
         /* Remove previous results if user has already searched */
         $('#cookResults').empty();
         $('#restaurantResults').empty();
+        $('#js-error-message').text('');
 
         if (decision === "cook"){
             foodTypeChoice = $('#food-search-chosen').val();
@@ -245,6 +252,8 @@ function watchHeader(){
         $('.eat-in').css("display", "none");
         $('#cookResults').empty();
         $('#restaurantResults').empty();
+        $('#restaurant-options-box').remove();
+        $('eat-form-in').remove();
         $('#right-box').addClass('out-img');
         $('#left-box').removeClass('out-img').addClass('home-img');
     })

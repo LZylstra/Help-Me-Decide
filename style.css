@@ -6,13 +6,29 @@
 body {
     font-family: 'Merriweather Sans', sans-serif;
     margin: 0;
-    padding: 0;
+	padding: 0;
 }
 
-h2 {
+.outline{
+	color: white;
+	text-shadow:
+	-1px -1px 0 #000,
+	1px -1px 0 #000,
+	-1px 1px 0 #000,
+	1px 1px 0 #000; 
+}
+
+.outline p{
+	color: black;
+	text-shadow: 2px 2px 8px white;
+}
+
+h2{
 	font-family: 'Merriweather Sans', cursive;
 	font-weight: bold;
-	color: #000000;
+	font-size: 200%;
+	color: black;
+	text-shadow: 2px 2px 8px white;
 }
 h1 {
 	font-family: 'Playfair Display', serif;
@@ -31,7 +47,7 @@ p {
 	border-radius: 6px;
 	border: 1px solid #dcdcdc;
 	cursor: pointer;
-	color: #666666;
+	color: #292929;
 	font-family: Arial;
 	font-size: 15px;
 	font-weight: bold;
@@ -56,6 +72,7 @@ nav{
     top: 0;
     width: 100%;
 }
+
 #banner ul {
 	list-style-type: none;
 	margin: 0;
@@ -77,6 +94,7 @@ nav{
 	padding: 14px 16px;
 	text-decoration: none;
 }
+
 /* Change the link color to #111 (black) on hover */
 #banner li a:hover {
 	background-color: #111;
@@ -84,15 +102,15 @@ nav{
 
 header {
     text-align: center;
-    margin-top: 4em;
+	margin-top: 4em;
+	padding-bottom: 1em;
 }
 
 /* Start Page Styling */
-#home,
-#out {
-    padding-top: 2em;
-    padding-bottom: 5em;
-    margin: auto;
+#home, #out {
+	margin: 6em auto;
+	padding: 1em;
+	/* background-color: white; */
 }
 
 /* Parent element of two sections */
@@ -137,12 +155,12 @@ section {
 
 /* Results page */
 .results{
-    overflow: auto;
+    overflow: auto; 
 }
 
 #right-box{
     height: 18em;
-}
+} 
 #cookResults, #restaurantResults{
     font-family: 'Open Sans', sans-serif;
 }
@@ -246,130 +264,41 @@ p {
     font-size: 120%;
 }
 
-/* Footer Styling */
-#edamam-badge {
-	float: left;
-}
-
-#yelp {
-	float: right;
-	margin: 0;
-}
-
-figcaption {
-	color: lightgrey;
-	display: inline-block;
-	font-size: 80%;
-}
 
 /* Search form styling   */
 .eat-form {
 	padding-left: 1em;
     text-align: left;
 }
-#restaurant-options-box{
-    margin: auto;
-}
 
 /*This styles all of the text fields */
-
-input[type=text],
-select {
+input[type=text], input[type=number]
+{
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	box-sizing: border-box;
-	display: inline-block;
 	margin: 4px 0;
 	padding: 6px 8px;
 	width: auto;
 }
 
-@media only screen and (min-width: 780px) {
-.results li img{
-    display: block;
-    margin-right: 2em;
-}
-    
-
-    
-    #ingredients li {
-        margin-right: 5em;
-    }
-    
-#cookResults .link{
-    padding-left: 15em;
-}
-.result-item{
-    width: 95%;
-
-}
-
-    #eat-form-in{
-        padding-top: 4em;
-    }
-    #home,
-    #out {
-        width: 100%;
-        
-    }
-
-    /* Sections Styling */
-    section {
-        border: solid 1px;
-        width: 50%;
-        min-height: 500px;
-        float: left;
-    }
-    
-    /* Restaurant Styling */
-    #restaurant-div{
-        padding-left: 10em;
-    }
-
-    .results img{
-        float: left;
-        margin-right: 2em;
-        max-width: 13em;
-        max-height: 13em;
-        border: 1px groove;
-    }
-    
-
-}
-/*This styles all of the text fields */
-
-input[type=text],
-select {
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	box-sizing: border-box;
-	display: inline-block;
-	margin: 8px 0;
-	padding: 8px 16px;
-	width: auto;
-}
-
 /* Restaurant Search Form Style */
-
-#food-type-chosen {
-	display: block;
-}
-#location-chosen {
-	display: block;
+#restaurant-options-box{
+	margin: 2em auto;
 }
 
-#search-radius {
+.block{
 	display: block;
 }
 
-#onlyopen {
-	display: block;
-	float: left;
+#check{
+	display:inline-block;
 }
 
 #search-btn {
     display: block;
-    margin-top: 4px;
+	margin-top: 6px;
+	margin-bottom: 8px;
 }
 
 input[type=checkbox].css-checkbox {
@@ -388,7 +317,6 @@ input[type=checkbox].css-checkbox {
 input[type=checkbox].css-checkbox + label.css-label {
 	padding-left: 35px;
 	height: 30px;
-	display: inline-block;
 	line-height: 30px;
 	background-repeat: no-repeat;
 	background-position: 0 0;
@@ -396,3 +324,72 @@ input[type=checkbox].css-checkbox + label.css-label {
 	vertical-align: middle;
 	cursor: pointer;
 }
+
+/* Footer Styling */
+#edamam-badge {
+	float: left;
+}
+
+#yelp {
+	float: right;
+	margin: 0;
+}
+
+figcaption {
+	color: lightgrey;
+	display: inline-block;
+	font-size: 80%;
+}
+
+@media only screen and (min-width: 780px) {
+.results li img{
+    display: block;
+    margin-right: 2em;
+}
+       
+#ingredients li {
+    margin-right: 5em;
+}
+    
+#cookResults .link{
+    padding-left: 15em;
+}
+
+.result-item{
+    width: 95%;
+
+}
+
+#eat-form-in{
+	padding-top: 4em;
+	margin: 0 auto;
+}
+
+/* Sections Styling */
+#home,#out {
+	width: 80%;
+	margin-top: 7em;
+}
+
+section {
+    border: solid 1px;
+    width: 50%;
+    min-height: 500px;
+    float: left;
+}
+    
+/* Restaurant Styling */
+#restaurant-div{
+    padding-left: 10em;
+}
+
+.results img{
+    float: left;
+    margin-right: 2em;
+    max-width: 13em;
+    max-height: 13em;
+    border: 1px groove;
+}
+    
+}
+

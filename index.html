@@ -19,10 +19,12 @@
     <h1>Help Me Decide</h1>
     <span>Are you hungry? Can't decide on what to eat? We've got you covered!</span>
   </header>  
+  <main>
   <div id = options>
     <section id = "left-box" class = "home-img">
       <form id = "home" class = "start">
-        <h2 class ="start">Cook at home</h2>
+        <h2 class ="start">COOK AT HOME</h2>
+        <p class = "outline">Feel like creating your own amazing food? Check out this section for ideas!</p>
         <input type = "submit" class = "start button" value = "Lets make some food!" id = "home-btn">
         <select id = "categories" class = "hidden">
         </select>
@@ -30,7 +32,8 @@
     </section>
     <section id = "right-box" class = "out-img">
       <form id = "out" class = "start">
-        <h2 class = "start">Go out to eat</h2>
+        <h2 class = "start">GO OUT TO EAT</h2>
+        <p class = "outline">Want someone else to do the food preparation heavy lifting? Take a look here for fun restaurant options!</p>
         <input type = "submit" class = "start button" value = "Find me some restaurants!" id = "out-btn">
       </form>
       <div class = "results hidden" id = "results">
@@ -39,6 +42,7 @@
       </div>
     </section>
   </div>
+  </main>
   <p id ="js-error-message" class="error-message"></p>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
