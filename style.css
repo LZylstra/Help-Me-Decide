@@ -301,17 +301,11 @@ input[type=text], input[type=number]
 	margin-bottom: 8px;
 }
 
-input[type=checkbox].css-checkbox {
-	position: absolute;
-	z-index: -1000;
-	left: -1000px;
+input[type=checkbox]{
 	overflow: hidden;
-	clip: rect(0 0 0 0);
-	height: 1px;
-	width: 1px;
-	margin: -1px;
-	padding: 0;
-	border: 0;
+	outline: 4px double black;
+	width: 15px;
+	height: 15px;
 }
 
 input[type=checkbox].css-checkbox + label.css-label {
